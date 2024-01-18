@@ -3,7 +3,7 @@ FROM bitnami/aws-cli:latest
 USER root
 
 # Install required system packages and dependencies
-RUN install_packages ca-certificates curl git jq procps
+RUN install_packages ca-certificates curl git jq procps yq
 RUN mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ ; \
     COMPONENTS=( \
       "kubectl-1.29.1-0-linux-${OS_ARCH}-debian-11" \
@@ -25,6 +25,7 @@ RUN mkdir /.kube && chmod g+rwX /.kube
 
 ENV PATH="/opt/bitnami/kubectl/bin:$PATH"
 
-USER 1001
+# 保持使用root用户，因为使用awscli中，需要往~/.aws/cli/cache/目录写文件
+# USER 1001
 ENTRYPOINT []
 CMD []
