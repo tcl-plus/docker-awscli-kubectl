@@ -22,6 +22,12 @@ RUN mkdir -p /tmp/bitnami/pkg/cache/ ; cd /tmp/bitnami/pkg/cache/ ; \
 RUN curl -SsLf "https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64" -o /usr/bin/yq && \
     chmod +x /usr/bin/yq
 
+# Install tkn
+RUN curl -LO https://github.com/tektoncd/cli/releases/download/v0.34.0/tkn_0.34.0_Linux_x86_64.tar.gz && \
+    tar xvzf tkn_0.34.0_Linux_x86_64.tar.gz -C /usr/local/bin/ tkn && \
+    ln -s /usr/local/bin/tkn /usr/local/bin/kubectl-tkn && \
+    rm -f tkn_0.34.0_Linux_x86_64.tar.gz
+
 RUN apt-get autoremove --purge -y curl && \
     apt-get update && apt-get upgrade -y && \
     apt-get clean && rm -rf /var/lib/apt/lists /var/cache/apt/archives

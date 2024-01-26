@@ -11,3 +11,4 @@ Merge From
 - awscli2
 - kubectl
 - yq
+- tkn
