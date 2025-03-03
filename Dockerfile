@@ -23,10 +23,10 @@ RUN curl -SsLf "https://github.com/mikefarah/yq/releases/latest/download/yq_linu
     chmod +x /usr/bin/yq
 
 # Install tkn
-RUN curl -LO https://github.com/tektoncd/cli/releases/download/v0.34.0/tkn_0.34.0_Linux_x86_64.tar.gz && \
-    tar xvzf tkn_0.34.0_Linux_x86_64.tar.gz -C /usr/local/bin/ tkn && \
+RUN curl -LO https://github.com/tektoncd/cli/releases/download/v0.40.0/tkn_0.40.0_Linux_x86_64.tar.gz && \
+    tar xvzf tkn_0.40.0_Linux_x86_64.tar.gz -C /usr/local/bin/ tkn && \
     ln -s /usr/local/bin/tkn /usr/local/bin/kubectl-tkn && \
-    rm -f tkn_0.34.0_Linux_x86_64.tar.gz
+    rm -f tkn_0.40.0_Linux_x86_64.tar.gz
 
 RUN apt-get autoremove --purge -y curl && \
     apt-get update && apt-get upgrade -y && \
